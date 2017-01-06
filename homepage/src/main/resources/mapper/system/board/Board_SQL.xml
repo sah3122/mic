@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="board">
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/> 
+			SELECT ROW_NUMBER() OVER (ORDER BY BOARD_IDX DESC) RNUM,
+				   BOARD_IDX, 
+			       BOARD_TITLE, 
+			       BOARD_HIT_CNT, 
+			       (SELECT MEMBER_NAME 
+			         FROM MEMBER 
+			        WHERE MEMBER_ID = BOARD_CREA_ID 
+			       ) AS BOARD_CREA_NAME, 
+			       BOARD_CREA_DT 
+			  FROM BOARD 
+			 WHERE BOARD_DELETE_AT = 'N' 
+			ORDER BY BOARD_IDX DESC 
+		<include refid="common.pagingPost"/> 
+	</select>
+	
+	
+	<select id="selectBoardData" parameterType="hashmap" resultType="hashmap">
+		SELECT BOARD_IDX, 
+		       BOARD_TITLE, 
+		       (SELECT MEMBER_NAME 
+		         FROM MEMBER 
+		        WHERE MEMBER_ID = BOARD_CREA_ID
+		       ) AS BOARD_CREA_NAME, 
+		       BOARD_CREA_DT, 
+		       BOARD_CONTENTS 
+		  FROM BOARD 
+		  WHERE BOARD_IDX = #{boardIdx} 
+	</select>
+	
+	<select id="selectBoardRecent" parameterType="hashmap" resultType="hashmap">
+		SELECT BOARD_IDX, 
+		       BOARD_TITLE, 
+		       (SELECT MEMBER_NAME 
+		         FROM MEMBER 
+		        WHERE MEMBER_ID = BOARD_CREA_ID 
+		       ) AS BOARD_CREA_NAME, 
+		       BOARD_CREA_DT, 
+		       BOARD_CONTENTS 
+		  FROM BOARD 
+		 WHERE BOARD_IDX = 
+		       (SELECT MAX(BOARD_IDX) 
+		         FROM BOARD 
+		       ) 
+		       AND BOARD_DELETE_AT = 'N'
+	</select>
+	
+	<update id="updateBoardData" parameterType="hashmap">
+		UPDATE BOARD 
+	       SET BOARD_TITLE = #{boardTitle},
+	       	   BOARD_CONTENTS = #{boardContents},
+		       BOARD_UPDATE_DT = TO_CHAR(SYSDATE,'yyyymmdd hh24:mi')
+		 WHERE BOARD_IDX = #{boardIdx}
+	</update>
+	
+	<insert id="insertBoardData" parameterType="hashmap">
+		INSERT 
+		  INTO BOARD
+		       (
+		           BOARD_TITLE,
+		           BOARD_HIT_CNT,
+		           BOARD_CREA_ID,
+		           BOARD_CREA_DT,
+		           BOARD_CONTENTS
+		       ) 
+		       VALUES
+		       (
+		           #{boardTitle},
+		           '0',
+		           #{memberId},
+		           TO_CHAR(SYSDATE,'yyyymmdd hh24:mi'),
+		           #{boardContents}
+		       )  
+	</insert>
+	
+	<update id="deleteBoardData" parameterType="hashmap">
+		UPDATE BOARD 
+	       SET BOARD_DELETE_AT = 'Y'
+		 WHERE BOARD_IDX = #{boardIdx}
+	</update>
+</mapper>

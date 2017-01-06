@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<!-- default : 템플릿에 설정된 페이지의 구성 요소에 대한 실제 파일을 지정합니다.  -->
+	<definition name="default" template="/WEB-INF/layouts/default_template.jsp">
+		<put-attribute name="header" value="/WEB-INF/layouts/default/header.jsp" />
+		<put-attribute name="top_menu"  value="/WEB-INF/layouts/default/top_menu.jsp" />
+		<put-attribute name="side_menu" value="/WEB-INF/layouts/default/side_menu.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/default/footer.jsp" />
+	</definition>
+	
+	<definition name="login" template="/WEB-INF/layouts/login_template.jsp">
+	</definition>
+	 
+	<!--  default를 확장하여 test 라는 URL로 시작되는 호출이 오는 경우 아래 설정에 의해서 페이지를 만들게 됩니다. -->
+	<!-- <definition name="/system/introduce/introduce_main" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/introduce/introduce_main.jsp" />
+	</definition>
+	
+	<definition name="/system/introduce/introduce_detail" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/introduce/introduce_detail.jsp" />
+	</definition> -->
+	
+	<definition name="/system/login/login_main" extends="login">
+		<put-attribute name="body" value="/WEB-INF/system/login/login_main.jsp" />
+	</definition>
+	
+	<definition name="/system/index/index_main" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/index/index_main.jsp" />
+	</definition>
+	
+	<definition name="/system/member/member_detail" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/member/member_detail.jsp" />
+	</definition>
+	
+	<definition name="/system/member/member_modify" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/member/member_modify.jsp" />
+	</definition>
+	
+	<definition name="/system/board/board_main" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/board/board_main.jsp" />
+	</definition>
+	
+	<definition name="/system/board/board_detail" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/board/board_detail.jsp" />
+	</definition>
+	
+	<definition name="/system/board/board_insert" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/board/board_insert.jsp" />
+	</definition>
+	
+	<definition name="/system/board/board_modify" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/board/board_modify.jsp" />
+	</definition>
+	
+	<definition name="/system/calender/calender_main" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/calender/calender_main.jsp" />
+	</definition>
+	
+	<definition name="/system/calender/calender_manage" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/calender/calender_manage.jsp" />
+	</definition>
+	
+	<definition name="/system/achievement/achievement_main" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/achievement/achievement_main.jsp" />
+	</definition>
+	
+	<definition name="/system/file/file_main" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/file/file_main.jsp" />
+	</definition>
+	
+	<definition name="/system/file/file_insert" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/file/file_insert.jsp" />
+	</definition>
+	
+	<definition name="/system/check/check_main" extends="default">
+		<put-attribute name="body" value="/WEB-INF/system/check/check_main.jsp" />
+	</definition>
+</tiles-definitions>

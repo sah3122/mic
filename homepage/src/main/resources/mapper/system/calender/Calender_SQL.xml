@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="calender">
+     
+     <select id="selectCalenderList" parameterType="hashmap" resultType="hashmap">
+		SELECT CALENDER_DATE_ST AS "start", 
+		       CALENDER_DATE_EN AS "end", 
+		       CALENDER_SCHEDULE AS "title",
+		       CALENDER_IDX 
+		  FROM CALENDER 
+		  	   WHERE CALENDER_DELETE_AT = 'N'
+		  ORDER BY CALENDER_IDX
+    </select>
+    
+    <insert id="insertCalenderData" parameterType="hashmap">
+		INSERT 
+		  INTO CALENDER 
+		       (
+		           CALENDER_DATE_ST, 
+		           CALENDER_DATE_EN, 
+		           CALENDER_SCHEDULE
+		       ) 
+		       VALUES 
+		       (
+		       		#{addCalenderSt},
+		       		#{addCalenderEn},
+		       		#{addCalenderTitle}
+		       )
+    </insert>
+    
+    <update id="updateCalenderData" parameterType="hashmap">
+		 UPDATE 
+		  	   CALENDER 
+		       SET CALENDER_DATE_ST = #{calenderSt},
+		        CALENDER_DATE_EN = #{calenderEn},
+		        CALENDER_SCHEDULE = #{calenderTitle}
+		 WHERE CALENDER_IDX = #{calenderIdx} 
+    </update>
+    
+    <update id="deleteCalenderData" parameterType="hashmap">
+		 UPDATE 
+		       CALENDER 
+		       SET CALENDER_DELETE_AT = 'Y' 
+		 WHERE CALENDER_IDX = #{deleteCalenderIdx}
+    </update>
+</mapper>

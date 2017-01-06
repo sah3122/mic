@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="file">
+     
+     <select id="selectFileList" parameterType="hashmap" resultType="hashmap">
+		SELECT FILE_IDX, 
+		       (SELECT MEMBER_NAME 
+		         FROM MEMBER 
+		        WHERE MEMBER_ID = FILE_MEMBER_IDX
+		       ) FILE_CREA_NAME, 
+		       FILE_ORIGINAL_NAME, 
+		       FILE_STORED_NAME, 
+		       FILE_CREA_DT, 
+		       FILE_UPDATE_DT, 
+		       FILE_TITLE,
+		       ROUND(FILE_SIZE/1024,1) FILE_SIZE
+		  FROM FILE_TB
+		 WHERE FILE_DELETE_AT = 'N' 
+		ORDER BY FILE_IDX
+    </select>
+    
+    <insert id="insertFileData" parameterType="hashmap">
+		INSERT 
+		  INTO FILE_TB 
+		       (
+		           FILE_MEMBER_IDX, 
+		           FILE_ORIGINAL_NAME, 
+		           FILE_STORED_NAME,
+		           FILE_TITLE,
+		           FILE_SIZE,
+		           FILE_CREA_DT
+		       ) 
+		       VALUES 
+		       (
+		       		#{memberId},
+		       		#{fileImgOrgName},
+		       		#{fileImgStored},
+		       		#{fileTitle},
+		       		#{fileFileSize},
+		       		TO_CHAR(SYSDATE,'yyyymmdd hh24:mi')
+		       )
+    </insert>
+    
+    <select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
+    	SELECT FILE_STORED_NAME, 
+		       FILE_ORIGINAL_NAME 
+		  FROM FILE_TB 
+		 WHERE FILE_IDX = #{fileIdx}
+    </select>
+    
+    <update id="updateFileData" parameterType="hashmap">
+		 UPDATE 
+		  	   CALENDER 
+		       SET CALENDER_DATE_ST = #{calenderSt},
+		        CALENDER_DATE_EN = #{calenderEn},
+		        CALENDER_SCHEDULE = #{calenderTitle}
+		 WHERE CALENDER_IDX = #{calenderIdx} 
+    </update>
+    
+    <update id="deleteFileData" parameterType="hashmap">
+		 UPDATE 
+		       CALENDER 
+		       SET CALENDER_DELETE_AT = 'Y' 
+		 WHERE CALENDER_IDX = #{deleteCalenderIdx}
+    </update>
+</mapper>

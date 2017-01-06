@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="login">
+     
+     <select id="selectMemberName" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+            SELECT MEMBER_ID 
+			  FROM MEMBER 
+			 WHERE MEMBER_NAME = #{memberName} 
+        ]]>
+    </select>
+    
+    <select id="selectMemberEmail" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+            SELECT MEMBER_ID 
+			  FROM MEMBER 
+			 WHERE MEMBER_NAME = #{memberEmail} 
+        ]]>
+    </select>
+    
+    <select id="selectMemberLogin" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+            SELECT MEMBER_ID, MEMBER_INFO, MEMBER_NAME, MEMBER_ADMIN, MEMBER_CHECK
+			  FROM MEMBER 
+			 WHERE MEMBER_EMAIL = #{memberEmail} 
+			 AND   MEMBER_PASSWORD = #{memberPassword}
+        ]]>
+    </select>
+    
+    <update id="updateMemberCheck" parameterType="hashmap">
+		UPDATE MEMBER 
+	       SET MEMBER_CHECK = 'Y' 
+		 WHERE MEMBER_ID = #{memberId}
+	</update>
+    
+    <insert id="insertMember" parameterType="hashmap" >
+    	INSERT INTO MEMBER
+		       (
+		           MEMBER_NAME, 
+		           MEMBER_EMAIL, 
+		           MEMBER_PASSWORD,
+		           MEMBER_REGIST_DT
+		       ) 
+		  	   VALUES
+		       (
+		           #{memberName}, 
+		           #{memberEmail}, 
+		           #{memberPassword},
+		           TO_CHAR(SYSDATE,'yyyymmdd hh24:mi')
+		       )
+    </insert>
+</mapper>
