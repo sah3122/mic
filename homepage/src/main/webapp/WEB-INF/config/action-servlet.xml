@@ -58,14 +58,18 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="CheckQuartzService" class="ks.mic.quartz.service.CheckQuartzServiceImpl"/>
+	<bean id="AchievementQuartzService" class="ks.mic.quartz.service.AchievementQuartzServiceImpl"/>
 	
 	<!-- 1. Cron 대상이 되는 클래스 정의 -->
 	<bean id="achievementQquartz" class="org.springframework.scheduling.quartz.JobDetailBean">
 	    <property name="jobClass" value="ks.mic.quartz.controller.AchievementQuartzController"/>
+	    <property name="applicationContextJobDataKey" value="applicationContext"/>
 	</bean>
 	
 	<bean id="checkQquartz" class="org.springframework.scheduling.quartz.JobDetailBean">
 	    <property name="jobClass" value="ks.mic.quartz.controller.CheckQuartzController"/>
+	    <property name="applicationContextJobDataKey" value="applicationContext"/>
 	</bean>
 	 
 	<!-- 2. Cron 시간 설정 -->
