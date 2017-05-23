@@ -2,44 +2,9 @@
 	pageEncoding="utf8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<link rel="stylesheet" type="text/css" href="/css/system/board/board.css"/>
+<script type="text/javascript" src="/js/system/board/board.js"></script>
 
-<style>
-.detail_wrap {
-	width: 100%;
-	height: 310px;
-	margin: 20px auto;
-	padding: 20px;
-	/* border:1px solid #c2c0b8; */
-	background-color: #fff;
-	-webkit-box-shadow: 0 0 60px 10px rgba(0, 0, 0, .1) inset, 0 5px 0 -4px
-		#fff, 0 5px 0 -3px #c2c0b8, 0 11px 0 -8px #fff, 0 11px 0 -7px #c2c0b8,
-		0 17px 0 -12px #fff, 0 17px 0 -11px #c2c0b8;
-	-moz-box-shadow: 0 0 60px 10px rgba(0, 0, 0, .1) inset, 0 5px 0 -4px
-		#fff, 0 5px 0 -3px #c2c0b8, 0 11px 0 -8px #fff, 0 11px 0 -7px #c2c0b8,
-		0 17px 0 -12px #fff, 0 17px 0 -11px #c2c0b8;
-	box-shadow: 0 0 60px 10px rgba(0, 0, 0, .1) inset, 0 5px 0 -4px #fff, 0
-		5px 0 -3px #c2c0b8, 0 11px 0 -8px #fff, 0 11px 0 -7px #c2c0b8, 0 17px
-		0 -12px #fff, 0 17px 0 -11px #c2c0b8;
-}
-
-.detail_wrap img {
-	width: 100%;
-	margin-top: 15px;
-}
-</style>
-<script>
-	function boardDelete(){
-		$("#dataForm").attr("action", "/board/boardDelete.do").submit();
-	}
-	
-	function boardModify(){
-		$("#dataForm").attr("action", "/board/boardModify.do").submit();
-	}
-	
-	function boardList(){
-		$("#dataForm").attr("action", "/board/boardMain.do").submit();
-	}
-</script>
 
 <section class="8u" style="padding-left: 0px">
 	<div class="detail_wrap">
@@ -51,9 +16,9 @@
 			<br />
 		</form>
 	</div>
-	<input type="button" value="List" onclick="boardList()" />
+	<input type="button" value="List" style="width:70px; height:40px; margin-top:10px; border:0px" onclick="boardList()" />
 	<c:if test="${session.memberName.equals(boardData.BOARD_CREA_NAME) }">
-		<input type="button" value="Delete" onclick="boardDelete()" />
-		<input type="button" value="Modify" onclick="boardModify()" />
+		<input type="button" value="Delete" style="width:70px; height:40px; margin-top:10px; border:0px" onclick="boardDelete()" />
+		<input type="button" value="Modify" style="width:70px; height:40px; margin-top:10px; border:0px" onclick="boardModify()" />
 	</c:if>
 </section>

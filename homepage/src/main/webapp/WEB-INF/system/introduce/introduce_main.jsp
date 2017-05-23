@@ -1,28 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="/js/system/introduce/introduce.js"></script>
 
 <script>
 	$("#menu-toggle").click(function(e) {
 	    e.preventDefault();
 	    $("#wrapper").toggleClass("toggled");
 	});
-	
-	function mouseOn(index){
-		$("#img"+index).css("opacity","0.5");
-		$("#div"+index).css("display","");
-	}
-	
-	function mouseLeave(index){
-		$("#img"+index).css("opacity","1");
-		$("#div"+index).css("display","none");
-	}
-	
-	function introduceDetail(index){
-		$("#memberIndex").val(index);
-		$("#dataForm").attr("action","/introduce/introduceDetail.do").submit();
-	}
-	
 </script>
     <!-- Page Content -->
 <div id="page-content-wrapper" style="height:100%">

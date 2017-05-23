@@ -18,15 +18,15 @@
 				<p style="text-overflow:ellipsis;white-space:nowrap;word-wrap:normal">${recentData.BOARD_CONTENTS} </p><a style="cursor:pointer" onclick="recentBoardDetail()">더보기</a>
 			</section>
 			<section class="12u">
-				<h3>Useful Links</h3>
+				<h3>즐겨찾기</h3>
 				<ul>
-					<li><a href="#">First Link</a></li>
-					<li><a href="#">Another Link</a></li>
-					<li><a href="#">And Another</a></li>
-					<li><a href="#">Last One</a></li>
+					<li><a href="www.naver.com">네이버</a></li>
+					<li><a href="www.google.com">구글</a></li>
+					<li><a href="www.facebook.com">페이스북</a></li>
+					<li><a href="www.daum.net">다음</a></li>
 				</ul>
 			</section>
-			<section class="12u">
+			<!-- <section class="12u">
 				<h3>More Useful Links</h3>
 				<ul>
 					<li><a href="#">First Link</a></li>
@@ -34,7 +34,7 @@
 					<li><a href="#">And Another</a></li>
 					<li><a href="#">Last One</a></li>
 				</ul>
-			</section>
+			</section> -->
 		</div>
 	</form>
 </section>

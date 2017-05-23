@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf8" pageEncoding="utf8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script>
-	function modifyDone(){
-		$("#dataForm").attr("action","/member/memberModifyDone.do").submit();
-	}
-	
-	function modifyCancel(){
-		$("#dataForm").attr("action","/member/memberDetail.do").submit();
-	}
-</script>
+<script src="/js/system/member/member.js"></script>
+
 <section class="8u">
 	<div class="form-style-5">
 		<form name="dataForm" id="dataForm" method="post" enctype="multipart/form-data">

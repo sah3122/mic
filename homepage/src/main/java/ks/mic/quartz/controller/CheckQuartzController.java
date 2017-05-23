@@ -20,6 +20,7 @@ public class CheckQuartzController extends QuartzJobBean {
 		ctx = (ApplicationContext) arg0.getJobDetail().getJobDataMap().get("applicationContext");
 		checkQuartzService = (CheckQuartzService) ctx.getBean("CheckQuartzService");
 		Map<String, Object> data = new HashMap<String, Object>();
+		System.out.println("aa");
 		try {
 			checkQuartzService.updateCheckData(data);
 		} catch (Exception e) {

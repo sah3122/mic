@@ -3,18 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript" src="/js/lib/ckeditor/ckeditor.js"></script>
-<style>
+<script src="/js/system/file/file.js"></script>
 
-</style>
-<script>
-	function fileInsertDone(){
-		$("#dataForm").attr("action", "/file/fileInsertDone.do").submit();
-	}
-	
-	function fileCancel(){
-		window.history.back();
-	}
-</script>
 <section class="8u" style="padding-left:0px">
 	<form id="dataForm" enctype="multipart/form-data" name="dataForm" method="post">
 		<input type="hidden" id="memberId" name="memberId" value="${session.memberId}"/>
